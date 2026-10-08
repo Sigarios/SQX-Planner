@@ -29,12 +29,12 @@ Deno.serve(async (req) => {
       name = [user.first_name, user.last_name].filter(Boolean).join(" ");
     }
 
-    const secret = Deno.env.get("SUPABASE_JWT_SECRET");
+    const secret = Deno.env.get("APP_JWT_SECRET");
     if (!secret) {
       return json(
         {
           error:
-            "SUPABASE_JWT_SECRET is not set. Скопируй Legacy JWT Secret в Supabase Dashboard → Settings → API → JWT Settings и выполни: supabase secrets set SUPABASE_JWT_SECRET=<secret>",
+            "APP_JWT_SECRET is not set. Скопируй Legacy JWT Secret в Supabase Dashboard → Settings → API → JWT Settings и выполни: supabase secrets set APP_JWT_SECRET=<secret>",
         },
         500,
       );

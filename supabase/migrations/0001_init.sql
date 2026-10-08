@@ -5,7 +5,7 @@
 -- Авторизация Mini App: Edge Function auth-verify проверяет подпись
 -- initData и выпускает JWT с клеймами:
 --   { "sub": "<tg_id>", "tg_id": <число>, "role": "authenticated" }
--- Подпись — JWT-секрет проекта (SUPABASE_JWT_SECRET).
+-- Подпись — секрет APP_JWT_SECRET (значение — Legacy JWT Secret проекта).
 --
 -- RLS: строка видна/меняется только если tg_id из JWT == user_id.
 -- Edge Function'ы пишут через service role (RLS обходится осознанно:
