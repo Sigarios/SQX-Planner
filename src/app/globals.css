@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* Дизайн-токены: монохром, никакого другого акцента кроме черного. */
+@theme {
+  --color-bg: #f6f6f4;
+  --color-surface: #ffffff;
+  --color-ink: #111111;
+  --color-mute: #777777;
+  --color-line: #d9d9d9;
+  --font-sans: Helvetica, "Helvetica Neue", Arial, "Segoe UI", system-ui, sans-serif;
+}
+
+html {
+  background: var(--color-bg);
+}
+
+body {
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-ink);
+  outline-offset: 1px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}

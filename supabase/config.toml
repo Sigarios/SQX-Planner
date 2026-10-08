@@ -1,0 +1,12 @@
+project_id = "tg-planner"
+
+# Все три функции проверяют авторизацию сами (initData / секрет вебхука /
+# личный Bearer-токен), поэтому проверку Supabase JWT на входе отключаем.
+[functions.auth-verify]
+verify_jwt = false
+
+[functions.telegram-webhook]
+verify_jwt = false
+
+[functions.capture-ingest]
+verify_jwt = false
