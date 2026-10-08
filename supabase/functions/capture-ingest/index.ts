@@ -15,11 +15,15 @@ Deno.serve(async (req) => {
 
   const secret = Deno.env.get("CAPTURE_SECRET");
   const userId = Number(Deno.env.get("CAPTURE_USER_ID"));
-  if (!secret || !userId) {
-    return new Response(
-      "capture is not configured: set CAPTURE_SECRET and CAPTURE_USER_ID secrets",
-      { status: 500, headers: corsHeaders },
-    );
+  const missing = [
+    ...(secret ? [] : ["CAPTURE_SECRET"]),
+    ...(Number.isInteger(userId) && userId > 0 ? [] : ["CAPTURE_USER_ID"]),
+  ];
+  if (missing.length > 0) {
+    return new Response(`capture is not configured: set ${missing.join(" and ")}`, {
+      status: 500,
+      headers: corsHeaders,
+    });
   }
   if (req.headers.get("authorization") !== `Bearer ${secret}`) {
     return new Response("unauthorized", { status: 401, headers: corsHeaders });

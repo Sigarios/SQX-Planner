@@ -30,7 +30,15 @@ Deno.serve(async (req) => {
     }
 
     const secret = Deno.env.get("SUPABASE_JWT_SECRET");
-    if (!secret) return json({ error: "SUPABASE_JWT_SECRET is not set" }, 500);
+    if (!secret) {
+      return json(
+        {
+          error:
+            "SUPABASE_JWT_SECRET is not set. Скопируй Legacy JWT Secret в Supabase Dashboard → Settings → API → JWT Settings и выполни: supabase secrets set SUPABASE_JWT_SECRET=<secret>",
+        },
+        500,
+      );
+    }
 
     const now = Math.floor(Date.now() / 1000);
     const token = await signJwt(
